@@ -1,0 +1,12 @@
+
+
+<% if (!user) {%>
+
+<% } else if (user.permission === 'admin') { %>
+    <div class="row">
+            <div class="container" style="position: fixed;bottom: 5%;left: 80%; display: block;margin: auto;color:aliceblue;">
+                <a href="/content/createpost" class="btn btn-danger">create post</a>
+            </div> 
+    </div>
+
+ <% }%>       

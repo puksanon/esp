@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+    <title><%= post.title %></title>
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/new.css">
+    <style>
+        .btn-back{
+            background: #ff8d72;
+            background-image: -webkit-linear-gradient(to bottom left, #ff8d72, #ff6491, #ff8d72);
+            background-image: -o-linear-gradient(to bottom left, #ff8d72, #ff6491, #ff8d72);
+            background-image: -moz-linear-gradient(to bottom left, #ff8d72, #ff6491, #ff8d72);
+            background-image: linear-gradient(to bottom left, #ff8d72, #ff6491, #ff8d72);
+            background-size: 210% 210%;
+            background-position: top right;
+            background-color: #ff8d72;
+            transition: all 0.15s ease;
+            box-shadow: none;
+            color: #ffffff;
+            width: 20%;
+            display: block;
+            margin: auto;
+            margin-top: 30px;
+            border-radius: 30px;
+        }
+    </style>
+    </head>
+    <body>
+            <%include ./partials/navbar.ejs %>
+            <div class="container h100">
+                <div class="post-content">
+                    <div class="card-post mb-3">
+                            <img class="card-img-top" src="<%= post.imagepath %>" alt="">
+                        <div class="card-body">
+                              <h5 class="card-title"><%= post.title %></h5>
+                              <p class="card-text">Game: <%= post.gametype %></p>
+                              <p class="card-text"><%= post.description %></p>
+                              <div class="row" >
+                                  <div class="col-sm-6">
+                                    <p class="card-txtupdate"><small class="text-muted">Update's: <%= post.date %></small></p>
+                                 </div>
+                                 <div class="col-sm-6">
+                                    <p class="card-txtwrite"><small class="text-muted">Write's: <%= post.Name %></small></p>
+                                </div>
+                              </div>                             
+                        </div>
+                        <div class="back">
+                            <a href="/content/news" class="btn btn-back">Back</a>
+                        </div>
+                    </div>
+                </div>
+                <% if (!user) {%>
+                    <% } else if (user.permission === 'admin') { %>
+                    <div class="container" style="position: fixed;bottom: 5%;left: 80%; display: block;margin: auto;color:aliceblue;">
+                            <a href="/content/createpost" class="btn btn-danger">create post</a>
+                        </div> 
+                    <% } %> 
+                </div> 
+            </div>
+            <%include footer.ejs %>
+                <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    </body>
+</html>       

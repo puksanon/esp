@@ -1,0 +1,87 @@
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">KMUTT-Esport</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-lg-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/content/home">Home
+                        <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/content/news">News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/content/community">Community</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/content/activity">Activity</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/content/about">About</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <%if (!user) { %>
+                            <div class="dropdown">
+                                    <button class="btn dropdown-toggle" type="button" id="user-filed" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
+                                    style="
+                                    background: #e14eca;
+                                    background-image: -webkit-linear-gradient(to bottom left, #e14eca, #ba54f5, #e14eca);
+                                    background-image: -o-linear-gradient(to bottom left, #e14eca, #ba54f5, #e14eca);
+                                    background-image: -moz-linear-gradient(to bottom left, #e14eca, #ba54f5, #e14eca);
+                                    background-image: linear-gradient(to bottom left, #e14eca, #ba54f5, #e14eca);
+                                    background-size: 210% 210%;
+                                    background-position: top right;
+                                    background-color: #e14eca;
+                                    transition: all 0.15s ease;
+                                    box-shadow: none;
+                                    color: #ffffff;
+                                    border-radius: 20px;">
+                                    Login
+                                    </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="/users/register">Register</a>
+                                    <a class="dropdown-item" href="/users/login">Sign in</a>
+                                </div>
+                            </div>
+                          <% } else {%>
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button" id="user-filed" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
+                                style="    
+                                background: #00f2c3;
+                                background-image: -webkit-linear-gradient(to bottom left, #00f2c3, #0098f0, #00f2c3);
+                                background-image: -o-linear-gradient(to bottom left, #00f2c3, #0098f0, #00f2c3);
+                                background-image: -moz-linear-gradient(to bottom left, #00f2c3, #0098f0, #00f2c3);
+                                background-image: linear-gradient(to bottom left, #00f2c3, #0098f0, #00f2c3);
+                                background-size: 210% 210%;
+                                background-position: top right;
+                                background-color: #00f2c3;
+                                transition: all 0.15s ease;
+                                box-shadow: none;
+                                color: #ffffff;
+                                border-radius: 20px;">
+                                <%= user.name%>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                  <a class="dropdown-item" href="/dashboard">Profile</a>
+                                  <a class="dropdown-item" href="/users/logout">Sign out</a>
+                                    <% if ( user.permission === 'user') {%>
+                                        <a href="/content/communitys/creategamepost" class="dropdown-item">create game post</a>
+                                    <% } else if (user.permission === 'admin') { %>
+                                            <a href="/content/createpost" class="dropdown-item">create post</a>
+                                            <a href="/content/communitys/creategamepost" class="dropdown-item">create game post</a>
+                                    <% } %>   
+                                </div>
+                              </div>
+                              <% } %>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
