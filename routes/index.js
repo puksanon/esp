@@ -4,7 +4,7 @@ const router = express.Router();
 const New = require('../models/newpapers');
 const game_post = require('../models/game_post');
 const game_opnion = require('../models/game_opnion');
-const User = require('../models/User');
+const User = require('../models/user');
 const { ensureAuthenticated, forwardAuthenticated} = require('../config/auth');
 
 //index
