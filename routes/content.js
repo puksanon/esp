@@ -255,32 +255,36 @@ router.get('/community/:gametype/:id_g/:id/edit',ensureAuthenticated,async funct
 });
 
 router.post('/community/:gametype/:id_g/:id/edit',ensureAuthenticated,async function(req,res) {
-  const id = req.params.id;
-  const gametype = req.params.gametype
-  const{ opnion } = req.body
+  let id = req.params.id;
+  let gametype = req.params.gametype
+  let { opnion } = req.body
   // console.log(req.body)
   // console.log(id)
   await game_opnion.findOneAndUpdate({ _id:id },{$set: 
     {
       opnion: opnion
-    }}, {new: true, useFindAndModify: false} ,function(err, result) {
+    }}, 
+    {new: true, useFindAndModify: false} ,
+      function(err, result) {
       if (err) { throw err; }
-       else {   
-        const posts = getgamepost(id ,function(err,posts){
-        const post = getopions(id , function(err,post){
+       else 
+       {   
+          let posts = getgamepost(id ,function(err,posts){
+          let post = getopions(id , function(err,post){
             if(err)
-            return next(err);
-            return res.render('game_opnion',{
-              posts,  
-              post,
-              user,
-              gametype: gametype,
-              id:id
-            })
-         });  
-      });
-    }
-  });
+              return next(err);
+              return res.render('game_opnion',
+              {
+                  posts,  
+                  post,
+                  user,
+                  gametype: gametype,
+                  id:id
+              })
+            });  
+          });
+        }
+    });
     
 });
 
