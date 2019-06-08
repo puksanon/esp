@@ -254,6 +254,21 @@ router.get('/community/:gametype/:id_g/:id/edit',ensureAuthenticated,async funct
   })
 });
 
+router.post('/community/:gametype/:id_g/:id/edit',ensureAuthenticated,async function(req,res) {
+  const id = req.params.id;
+  const gametype = req.params.gametype
+  // console.log(req.body)
+  // console.log(id)
+  await game_opnion.findOneAndUpdate({ _id:id },{$set: 
+    {
+      opnion: req.body.title
+    }}, {new: true, useFindAndModify: false} ,function(err, result) {
+      if (err) { throw err; }
+       else { res.redirect(`/content/community/${gametype}/${id}`) }
+  });
+    
+});
+
 router.post('/communitys/creategamepost',ensureAuthenticated,async function (req, res) {
   const redirectURL = "community";
   const name = req.user.name;
@@ -318,7 +333,8 @@ router.post('/communitys/creategamepost',ensureAuthenticated,async function (req
             imagepath,
             header: "create game post"
           })
-        }else{const newPost = new game_post({
+        }else{
+          const newPost = new game_post({
               name,
               imagepath,
               title,
