@@ -265,7 +265,21 @@ router.post('/community/:gametype/:id_g/:id/edit',ensureAuthenticated,async func
       opnion: opnion
     }}, {new: true, useFindAndModify: false} ,function(err, result) {
       if (err) { throw err; }
-       else { res.redirect(`/content/community/${gametype}/${id}`) }
+       else {   
+        const posts = getgamepost(id ,function(err,posts){
+        const post = getopions(id , function(err,post){
+            if(err)
+            return next(err);
+            return res.render('game_opnion',{
+              posts,  
+              post,
+              user,
+              gametype: gametype,
+              id:id
+            })
+         });  
+      });
+    }
   });
     
 });
