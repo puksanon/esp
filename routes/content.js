@@ -257,11 +257,12 @@ router.get('/community/:gametype/:id_g/:id/edit',ensureAuthenticated,async funct
 router.post('/community/:gametype/:id_g/:id/edit',ensureAuthenticated,async function(req,res) {
   const id = req.params.id;
   const gametype = req.params.gametype
+  const{ opnion } = req.body
   // console.log(req.body)
   // console.log(id)
   await game_opnion.findOneAndUpdate({ _id:id },{$set: 
     {
-      opnion: req.body.title
+      opnion: opnion
     }}, {new: true, useFindAndModify: false} ,function(err, result) {
       if (err) { throw err; }
        else { res.redirect(`/content/community/${gametype}/${id}`) }
