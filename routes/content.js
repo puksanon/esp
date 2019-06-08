@@ -257,32 +257,19 @@ router.get('/community/:gametype/:id_g/:id/edit',ensureAuthenticated,async funct
 router.post('/community/:gametype/:id_g/:id/edit',ensureAuthenticated,async function(req,res) {
   let id = req.params.id;
   let gametype = req.params.gametype
-  let { opnion } = req.body
+  let id_g = req.params.id_g
   // console.log(req.body)
   // console.log(id)
   await game_opnion.findOneAndUpdate({ _id:id },{$set: 
     {
-      opnion: opnion
+      opnion: req.body.title
     }}, 
     {new: true, useFindAndModify: false} ,
       function(err, result) {
       if (err) { throw err; }
        else 
        {   
-          let posts = getgamepost(id ,function(err,posts){
-          let post = getopions(id , function(err,post){
-            if(err)
-              return next(err);
-              return res.render('game_opnion',
-              {
-                  posts,  
-                  post,
-                  user,
-                  gametype: gametype,
-                  id:id
-              })
-            });  
-          });
+        return res.redirect(`/content/community/${gametype}/${id_g}`)
         }
     });
     
